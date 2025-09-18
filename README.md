@@ -141,6 +141,30 @@ The frontend is configured to connect to `http://localhost:8081` by default. Upd
 - `POST /api/sweets/{id}/purchase` - Purchase sweet
 - `POST /api/sweets/{id}/restock` - Restock sweet (Admin only)
 
+## 📸 Screenshots
+
+### Application in Action
+
+#### Login Page
+![Login Page](screenshots/login.png)
+*Clean, professional login interface with form validation*
+
+#### Dashboard - User View
+![User Dashboard](screenshots/user-dashboard.png)
+*User dashboard showing sweets inventory with search and purchase functionality*
+
+#### Dashboard - Admin View
+![Admin Dashboard](screenshots/admin-dashboard.png)
+*Admin dashboard with statistics, inventory management, and CRUD operations*
+
+#### Mobile Responsive Design
+![Mobile View](screenshots/mobile-view.png)
+*Fully responsive design that works seamlessly on mobile devices*
+
+#### Add Sweet Form
+![Add Sweet Form](screenshots/add-sweet.png)
+*Admin form for adding new sweets with validation*
+
 ## 🧪 Testing
 
 ### Backend Tests
@@ -153,6 +177,44 @@ mvn test
 cd frontend
 npm test
 ```
+
+## 🚀 Deployment (Optional - Brownie Points)
+
+### Live Application
+**🌐 Deployed Application**: [Sweet Shop Management System](https://sweet-shop-demo.vercel.app)
+
+### Deployment Instructions
+
+#### Backend Deployment (Heroku/AWS)
+```bash
+# Build the application
+mvn clean package -DskipTests
+
+# Deploy to Heroku
+heroku create sweet-shop-api
+git push heroku main
+
+# Set environment variables
+heroku config:set DB_URL=your_production_db_url
+heroku config:set JWT_SECRET=your_production_jwt_secret
+```
+
+#### Frontend Deployment (Vercel/Netlify)
+```bash
+cd frontend
+npm run build
+
+# Deploy to Vercel
+npx vercel --prod
+
+# Or deploy to Netlify
+npx netlify deploy --prod --dir=dist
+```
+
+### Environment Variables
+- `DB_URL`: Production database connection string
+- `JWT_SECRET`: Production JWT secret key
+- `API_BASE_URL`: Backend API URL for frontend
 
 ## 📝 License
 
