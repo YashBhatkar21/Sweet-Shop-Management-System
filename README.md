@@ -14,11 +14,9 @@ A comprehensive full-stack application for managing a sweet shop inventory with 
 ### Frontend (React + Vite)
 - **Modern React 19.1.1** with Vite build system
 - **Professional UI/UX** with responsive design
-- **Real-time Statistics** dashboard
 - **Advanced Search & Filtering** capabilities
 - **Role-based Interface** (User/Admin views)
 - **Form Validation** and error handling
-- **Toast Notifications** for user feedback
 
 ## 🛠️ Tech Stack
 
