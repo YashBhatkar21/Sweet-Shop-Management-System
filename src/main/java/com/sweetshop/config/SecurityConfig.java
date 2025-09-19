@@ -44,16 +44,24 @@ public class SecurityConfig {
         return http.build();
     }
 
-    @Bean
+   @Bean
     public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:5173", "http://localhost:5174"));
-        configuration.setAllowedMethods(List.of("GET","POST","PUT","DELETE","OPTIONS"));
-        configuration.setAllowedHeaders(List.of("Authorization","Content-Type"));
-        configuration.setAllowCredentials(true);
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-        return source;
+    CorsConfiguration configuration = new CorsConfiguration();
+
+    // Allow localhost (dev), Render backend, and any Vercel deployment
+    configuration.setAllowedOriginPatterns(List.of(
+        "http://localhost:*",
+        "https://*.vercel.app",
+        "https://sweet-shop-management-system-e0ex.onrender.com"
+    ));
+
+    configuration.setAllowedMethods(List.of("GET","POST","PUT","DELETE","OPTIONS"));
+    configuration.setAllowedHeaders(List.of("Authorization","Content-Type"));
+    configuration.setAllowCredentials(true);
+
+    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    source.registerCorsConfiguration("/**", configuration);
+    return source;
     }
 	@Bean
 	public PasswordEncoder passwordEncoder() {

@@ -13,7 +13,12 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                    .allowedOrigins("https://sweet-shop-management-system-kqvs.vercel.app")
+                    // allow any Vercel preview, localhost, and your deployed backend
+                    .allowedOriginPatterns(
+                        "https://*.vercel.app",
+                        "http://localhost:*",
+                        "https://sweet-shop-management-system-e0ex.onrender.com"
+                    )
                     .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                     .allowedHeaders("*")
                     .allowCredentials(true);
