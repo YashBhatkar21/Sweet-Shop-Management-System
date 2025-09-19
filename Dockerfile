@@ -1,21 +1,17 @@
-# Use an official OpenJDK runtime as a parent image
-FROM eclipse-temurin:17-jdk
+# Use OpenJDK with Maven preinstalled
+FROM maven:3.9.6-eclipse-temurin-17 AS build
 
-# Set the working directory in the container
 WORKDIR /app
-
-# Copy Maven wrapper and pom.xml
-COPY .mvn .mvn
-COPY mvnw pom.xml ./
-
-# Copy the rest of the application source
-COPY src src
+COPY pom.xml .
+COPY src ./src
 
 # Build the application
-RUN ./mvnw clean package -DskipTests
+RUN mvn clean package -DskipTests
 
-# Expose the port your app runs on (default 8080 or 8081)
-EXPOSE 8081
+# Use smaller JDK image for running
+FROM eclipse-temurin:17-jdk
 
-# Run the application
-CMD ["java", "-jar", "target/sweet-shop-0.0.1-SNAPSHOT.jar"]
+WORKDIR /app
+COPY --from=build /app/target/*.jar app.jar
+
+CMD ["java", "-jar", "app.jar"]
