@@ -2,8 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate, Link } from 'react-router-dom'
 import { useEffect, useState, useCallback } from 'react'
 import './App.css'
 
-const API_BASE = import.meta?.env?.DEV ? '' : 'http://localhost:8081';
-
+const API_BASE = import.meta.env.VITE_API_URL || '';
 // Utility functions for authentication
 function getToken() { return localStorage.getItem('token'); }
 function getRole() { return localStorage.getItem('role'); }
